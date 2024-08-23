@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from '../screens/HomeScreen';
@@ -11,6 +11,11 @@ import ProfileScreen from '../screens/ProfileScreen';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const [homeClicked, setHomeClicked]=useState("home");
+  const [searchClicked, setSearchClicked]=useState("search-outline");
+  const [addClicked, setAddClicked]=useState("add");
+  const [loveClicked, setLoveClicked]=useState("heart-outline");
+  const [userClicked, setUserClicked]=useState("person-outline");
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false, tabBarShowLabel: false }}
@@ -20,8 +25,17 @@ const TabNavigator = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="home-outline" size={20} color="black" />
+            <Ionicons name={homeClicked} size={20} color="black" />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            setHomeClicked("home")
+            setSearchClicked("search-outline");
+            setAddClicked("add");
+            setLoveClicked("heart-outline");
+            setUserClicked("person-outline");
+          },
         }}
       />
       <Tab.Screen
@@ -29,8 +43,17 @@ const TabNavigator = () => {
         component={ExploreScreen}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="search-outline" size={20} color="black" />
+            <Ionicons name={searchClicked} size={20} color="black" />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            setHomeClicked("home-outline")
+            setSearchClicked("search");
+            setAddClicked("add");
+            setLoveClicked("heart-outline");
+            setUserClicked("person-outline");
+          },
         }}
       />
       <Tab.Screen
@@ -38,8 +61,17 @@ const TabNavigator = () => {
         component={AddPost}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="add-outline" size={20} color="black" />
+            <Ionicons name={addClicked} size={20} color="black" />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            setHomeClicked("home-outline")
+            setSearchClicked("search-outline");
+            setAddClicked("add-circle");
+            setLoveClicked("heart-outline");
+            setUserClicked("person-outline");
+          },
         }}
       />
       <Tab.Screen
@@ -47,8 +79,17 @@ const TabNavigator = () => {
         component={NotificationScreen}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="heart-outline" size={20} color="black" />
+            <Ionicons name={loveClicked} size={20} color="black" />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            setHomeClicked("home-outline")
+            setSearchClicked("search-outline");
+            setAddClicked("add");
+            setLoveClicked("heart");
+            setUserClicked("person-outline");
+          },
         }}
       />
       <Tab.Screen
@@ -56,8 +97,17 @@ const TabNavigator = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="person-outline" size={20} color="black" />
+            <Ionicons name={userClicked} size={20} color="black" />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            setHomeClicked("home-outline")
+            setSearchClicked("search-outline");
+            setAddClicked("add");
+            setLoveClicked("heart-outline");
+            setUserClicked("person");
+          },
         }}
       />
     </Tab.Navigator>

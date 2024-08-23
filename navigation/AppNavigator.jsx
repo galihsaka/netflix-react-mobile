@@ -38,7 +38,7 @@ const AppNavigator = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 flex-row items-center justify-center">
+      <View className="flex-1 items-center justify-center">
         <ActivityIndicator size="large" />
         <Text>Loading...</Text>
       </View>
